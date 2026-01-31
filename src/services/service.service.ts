@@ -1,7 +1,7 @@
 import api from "./api";
 import { TokenService } from "./token.service";
 
-const API_URL = import.meta.env.VITE_SERVICES_URL;
+const API_URL = import.meta.env.VITE_BASE_URL;
 
 const getAuthHeader = () => ({
   headers: { Authorization: `Bearer ${TokenService.getAccessToken()}` },
