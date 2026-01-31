@@ -8,7 +8,7 @@ const getAuthHeader = () => ({
 });
 
 export const authService = {
-  login: async (credentials: { email: string; password: string }) => {
+  login: async (credentials: { username: string; password: string }) => {
     return api.post(`${API_URL}/login`, credentials);
   },
   register: async (data: { username: string; email: string; phoneNumber: string; password: string; confirmPassword: string }) => {
