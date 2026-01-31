@@ -151,7 +151,7 @@ const AdminServices = () => {
                   <div className="avatar">
                     <div className="mask mask-squircle w-12 h-12">
                       <img 
-                        src={service.imageUrl ? (service.imageUrl.startsWith("http") ? service.imageUrl : `http://localhost:5000${service.imageUrl}`) : "https://placehold.co/100"} 
+                        src={service.imageUrl ? (service.imageUrl.startsWith("http") ? service.imageUrl : `${import.meta.env.VITE_BASE_URL}${service.imageUrl}`) : "https://placehold.co/100"} 
                         alt={service.name} 
                       />
                     </div>
@@ -208,7 +208,7 @@ const AdminServices = () => {
                 {(imageFile || formData.imageUrl) && (
                   <div className="mt-2">
                     <img 
-                      src={imageFile ? URL.createObjectURL(imageFile) : (formData.imageUrl.startsWith("http") ? formData.imageUrl : `http://localhost:5000${formData.imageUrl}`)} 
+                      src={imageFile ? URL.createObjectURL(imageFile) : (formData.imageUrl.startsWith("http") ? formData.imageUrl : `${import.meta.env.VITE_BASE_URL}${formData.imageUrl}`)} 
                       alt="Preview" 
                       className="h-32 w-auto object-cover rounded-lg" 
                     />

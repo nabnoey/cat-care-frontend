@@ -46,7 +46,7 @@ const ServiceDetail = () => {
       <div className="card lg:card-side bg-white/80 backdrop-blur-md shadow-xl border border-white/50 overflow-hidden h-auto lg:h-[450px]">
         <figure className="lg:w-1/2 h-64 lg:h-full relative">
           <img 
-            src={service.imageUrl ? (service.imageUrl.startsWith("http") ? service.imageUrl : `http://localhost:5000${service.imageUrl}`) : "https://placehold.co/800x600?text=Service"} 
+            src={service.imageUrl ? (service.imageUrl.startsWith("http") ? service.imageUrl : `${import.meta.env.VITE_BASE_URL}${service.imageUrl}`) : "https://placehold.co/800x600?text=Service"} 
             alt={service.name}
             className="w-full h-full object-cover"
           />
