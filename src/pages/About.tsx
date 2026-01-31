@@ -1,4 +1,3 @@
-import React from 'react';
 import { FaCat, FaUserMd, FaHeart } from 'react-icons/fa';
 
 function About() {
