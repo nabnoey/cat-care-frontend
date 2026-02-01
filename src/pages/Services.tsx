@@ -2,27 +2,27 @@ import { useState, useEffect } from "react";
 import { serviceService } from "../services/service.service";
 import ServiceCard from "../components/ServiceCard";
 
-
-
 const Services = () => {
- const [services, setServices] = useState<any[]>([]);
-const [loading, setLoading] = useState(true);
+  const [services, setServices] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-  const fetchServices = async () => {
-    try {
-      const res = await serviceService.getServices();
-      console.log("API:", res.data);
-      setServices(res.data.services || []); // 👈 กัน undefined
-    } catch (error) {
-      console.error("Error fetching services:", error);
-    } finally {
-      setLoading(false);
-    }
-  };
+    const fetchServices = async () => {
+      try {
+        const res = await serviceService.getServices();
+        console.log("API:", res.data);
 
-  fetchServices();
-}, []);
+        setServices(res.data?.services ?? []);
+      } catch (error) {
+        console.error("Error fetching services:", error);
+        setServices([]); // กันพังเผื่อ error
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchServices();
+  }, []);
 
   return (
     <div className="container mx-auto px-4 py-8 font-roboto">
