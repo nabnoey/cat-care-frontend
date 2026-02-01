@@ -12,7 +12,9 @@ const Services = () => {
     const fetchServices = async () => {
       try {
         const res = await serviceService.getServices();
-        setServices(res.data);
+
+        console.log("API response:", res.data); 
+        setServices(res.data.data);
       } catch (error) {
         console.error("Error fetching services:", error);
       } finally {
@@ -21,6 +23,7 @@ const Services = () => {
     };
     fetchServices();
   }, []);
+  console.log(services);
 
   if (loading) {
     return <LoadingSpinner />;
