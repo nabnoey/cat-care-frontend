@@ -1,33 +1,28 @@
 import { useState, useEffect } from "react";
 import { serviceService } from "../services/service.service";
-import type { Service } from "../types";
 import ServiceCard from "../components/ServiceCard";
-import LoadingSpinner from "../components/LoadingSpinner";
+
+
 
 const Services = () => {
-  const [services, setServices] = useState<Service[]>([]);
-  const [loading, setLoading] = useState(true);
+ const [services, setServices] = useState<any[]>([]);
+const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchServices = async () => {
-      try {
-        const res = await serviceService.getServices();
+  const fetchServices = async () => {
+    try {
+      const res = await serviceService.getServices();
+      console.log("API:", res.data);
+      setServices(res.data.services || []); // 👈 กัน undefined
+    } catch (error) {
+      console.error("Error fetching services:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
-        console.log("API response:", res.data); 
-        setServices(res.data.data);
-      } catch (error) {
-        console.error("Error fetching services:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchServices();
-  }, []);
-  console.log(services);
-
-  if (loading) {
-    return <LoadingSpinner />;
-  }
+  fetchServices();
+}, []);
 
   return (
     <div className="container mx-auto px-4 py-8 font-roboto">
