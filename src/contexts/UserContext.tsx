@@ -1,4 +1,5 @@
 import { createContext } from "react";
+import type { User } from "../types";
 
 
 
@@ -7,7 +8,7 @@ export interface UserContextType {
   // userInfo: User 
   isAuthenticated: boolean;
   role: string | null;
-  user:string | null;
+  user:User | null;
   logIn: (token: string, role: string) => void;
   logout: () => void;
 }
