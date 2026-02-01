@@ -7,23 +7,26 @@ const Services = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-  const fetchServices = async () => {
-    try {
-      const res = await serviceService.getServices();
-      console.log("API RESPONSE:", res.data);
+    const fetchServices = async () => {
+      try {
+        const res = await serviceService.getServices();
+        setServices(res.data ?? []);
+      } catch (error) {
+        console.error(error);
+        setServices([]);
+      } finally {
+        setLoading(false);
+      }
+    };
 
-      // ✅ backend ส่ง array ตรง ๆ
-      setServices(res.data ?? []);
-    } catch (error) {
-      console.error("Error fetching services:", error);
-      setServices([]);
-    } finally {
-      setLoading(false);
-    }
-  };
+    fetchServices();
+  }, []);
 
-  fetchServices();
-}, []);
+  // ใช้ loading แล้ว
+  if (loading) {
+    return <div className="text-center py-20">กำลังโหลดบริการ...</div>;
+  }
+
 
   return (
     <div className="container mx-auto px-4 py-8 font-roboto">
