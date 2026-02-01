@@ -17,7 +17,7 @@ export default function AddCat() {
     formData.append("name", name);
     formData.append("ageYears", String(ageYears));
     formData.append("ageMonths", String(ageMonths));
-    if (image) formData.append("image", image);
+    if (image) formData.append("file", image);
 
     try {
       await catService.createCat(formData);
@@ -75,14 +75,17 @@ export default function AddCat() {
                 />
               </div>
               <div className="form-control">
-                <label className="label">
-                  <span className="label-text">อายุ (เดือน)</span>
-                </label>
-                <select
-                  className="select select-bordered w-full"
-                  value={ageMonths}
-                  onChange={(e) => setAgeMonths(Number(e.target.value))}
-                >
+           <label htmlFor="ageMonths" className="label">
+  <span className="label-text">อายุ (เดือน)</span>
+</label>
+
+<select
+  id="ageMonths"
+  className="select select-bordered w-full"
+  value={ageMonths}
+  onChange={(e) => setAgeMonths(Number(e.target.value))}
+>
+
                   {[...Array(12).keys()].map((m) => (
                     <option key={m} value={m}>
                       {m} เดือน
@@ -93,15 +96,18 @@ export default function AddCat() {
             </div>
 
             <div className="form-control mb-6">
-              <label className="label">
-                <span className="label-text">รูปภาพแมว</span>
-              </label>
-              <input
-                type="file"
-                className="file-input file-input-bordered w-full"
-                onChange={(e) => setImage(e.target.files?.[0] || null)}
-                accept="image/*"
-              />
+              <label htmlFor="catImage" className="label">
+  <span className="label-text">รูปภาพแมว</span>
+</label>
+
+<input
+  id="catImage"
+  type="file"
+  className="file-input file-input-bordered w-full"
+  onChange={(e) => setImage(e.target.files?.[0] || null)}
+  accept="image/*"
+/>
+
             </div>
 
             <button type="submit" className="btn btn-primary w-full">
