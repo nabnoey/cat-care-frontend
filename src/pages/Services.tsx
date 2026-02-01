@@ -10,6 +10,8 @@ const Services = () => {
     const fetchServices = async () => {
       try {
         const res = await serviceService.getServices();
+        console.log("FULL RESPONSE", res);
+console.log("DATA", res.data);
         setServices(res.data?.services ?? []);
       } catch (error) {
         console.error("Error fetching services:", error);
