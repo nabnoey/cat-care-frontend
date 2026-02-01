@@ -7,6 +7,7 @@ export interface UserContextType {
   // userInfo: User 
   isAuthenticated: boolean;
   role: string | null;
+  user:string | null;
   logIn: (token: string, role: string) => void;
   logout: () => void;
 }
