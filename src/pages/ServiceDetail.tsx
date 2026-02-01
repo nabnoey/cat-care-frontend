@@ -8,7 +8,7 @@ const ServiceDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
 
-  const { user, role } = useContext(UserContext)!;
+  const { isAuthenticated, role } = useContext(UserContext)!;
 
   const [service, setService] = useState<Service | null>(null);
   const [loading, setLoading] = useState(true);
@@ -31,15 +31,15 @@ const ServiceDetail = () => {
   }, [id]);
 
   const handleBooking = () => {
-    if (!user) {
-      navigate("/login", {
-        state: { from: `/services/${service?._id}` },
-      });
-      return;
-    }
+   if (!isAuthenticated) {
+    navigate("/login", {
+      state: { from: `/services/${service?._id}` },
+    });
+    return;
+  }
 
-    navigate(`/booking/${service?._id}`);
-  };
+  navigate(`/booking/${service?._id}`);
+};
 
   if (loading) {
     return (
